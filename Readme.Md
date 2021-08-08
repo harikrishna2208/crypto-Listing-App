@@ -13,4 +13,4 @@ ID
 
  4) Additional Tips: install nodemon and paste this code in scripts section in package.json in crypto-backend Folder
 
-    "start":"nodemon server.js"w
+    "start":"nodemon server.js"
