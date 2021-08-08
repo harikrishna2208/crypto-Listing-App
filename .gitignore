@@ -1,11 +1,13 @@
 # dependencies
 **/node_modules
-.Crypto-Backend/Apikey
+
 # testing
 /coverage
 
 # production
 /build
+
+Apikey
 
 # misc
 .DS_Store
