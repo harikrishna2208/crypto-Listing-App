@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import CryptoDetails from "./Crypto/CryptoDetails";
 import ReactPaginate from "react-paginate";
-import Header from "./header/Header"
+import Header from "./header/Header";
 import axios from "axios";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+var saveDat = [];
 const Home = () => {
-
   const cryptoperpage = 5;
   const [search, setSearch] = useState("");
   const [crypto, setCrypto] = useState([]);
   const [holder, setHolder] = useState([]);
   const [pageNumber, setNumber] = useState(0);
-  const [viewstate, setViewState] = useState([])
-  const [viewed, setViewed] = useState([])
-  const [filterData,setFilterData]=useState([])
-
+  const [viewstate, setViewState] = useState([]);
+  const [viewed, setViewed] = useState(saveDat);
+  const [filterData, setFilterData] = useState([]);
 
   const pagevisited = pageNumber * cryptoperpage;
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    setHolder(crypto)
-    FilterFunction(holder)
+    setHolder(crypto);
+    FilterFunction(holder);
   };
 
-   function FilterFunction(res){
-      setFilterData ( res.filter((data) =>{
-      return  data.name.toLowerCase().includes(search.toLowerCase())
-      }
-      ))
-   }
+  function FilterFunction(res) {
+    setFilterData(
+      res.filter((data) => {
+        return data.name.toLowerCase().includes(search.toLowerCase());
+      })
+    );
+  }
 
   useEffect(() => {
     axios
@@ -40,65 +39,80 @@ const Home = () => {
       .then((result) => {
         setCrypto(result.data);
         setHolder(result.data);
-        FilterFunction(result.data)
+        FilterFunction(result.data);
       })
       .catch((err) => console.log(err));
     try {
       fetch("http://localhost:4000/cryptoData/getcrypto")
         .then((result) => {
-          return result.json()
-        }).then(res => {
-          setViewState(res)
-          setViewed(res)
-        }
-        )
+          return result.json();
+        })
+        .then((res) => {
+          setViewState(res);
+          setViewed(res);
+        });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }, []);
-
-
 
   const pageCount = Math.ceil(holder.length / cryptoperpage);
   const changePage = ({ selected }) => {
     setNumber(selected);
   };
 
-  function handleDragEnd(result) { 
-    const currentpage= filterData.slice(pagevisited, pagevisited + cryptoperpage)
-    let sourceindex =result.source.index;
-    let destiny= result.destination.index;
-    const source=filterData.findIndex((filter)=>{return filter.id===currentpage[sourceindex].id})
-    const DestinyIndex=filterData.findIndex((filter)=>{return filter.id===currentpage[destiny].id})
+  function handleDragEnd(result) {
+    const currentpage = filterData.slice(
+      pagevisited,
+      pagevisited + cryptoperpage
+    );
+    let sourceindex = result.source.index;
+    let destiny = result.destination.index;
+    const source = filterData.findIndex((filter) => {
+      return filter.id === currentpage[sourceindex].id;
+    });
+    const DestinyIndex = filterData.findIndex((filter) => {
+      return filter.id === currentpage[destiny].id;
+    });
     const items = Array.from(filterData);
     const [reorderdItem] = items.splice(source, 1);
     items.splice(DestinyIndex, 0, reorderdItem);
-    setFilterData(items)
+    setFilterData(items);
   }
-
 
   return (
     <div>
       <div className="App">
         <Header change={handleChange} />
         <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable  droppableId="characters">
+          <Droppable droppableId="characters">
             {(provided) => (
-              <div className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+              <div
+                className="characters"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
                 {filterData
                   .slice(pagevisited, pagevisited + cryptoperpage)
                   .map((crypto, index) => {
-                    let view = false
+                    let view = false;
                     viewed.map((ele) => {
                       if (crypto.id === ele.Name) {
                         view = true;
                       }
-                      return 0
-                    })
+                    });
                     return (
-                      <Draggable key={crypto.id} draggableId={crypto.id} index={index}>
+                      <Draggable
+                        key={crypto.id}
+                        draggableId={crypto.id}
+                        index={index}
+                      >
                         {(provided) => (
-                          <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                          <div
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          >
                             <CryptoDetails
                               key={crypto.id}
                               image={crypto.image}
@@ -111,8 +125,7 @@ const Home = () => {
                         )}
                       </Draggable>
                     );
-                  })
-                }
+                  })}
                 {provided.placeholder}
               </div>
             )}
@@ -130,7 +143,7 @@ const Home = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

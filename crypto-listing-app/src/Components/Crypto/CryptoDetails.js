@@ -45,7 +45,7 @@ const CryptoDetails = ({ image, Name, symbol, price, viewed }) => {
           </button>
         )}
 
-        {buttondata && (
+        {buttondata &&   (
           <Link to="/View">
             <button className="saveData" style={{ backgroundColor: "orange" }}>
               View

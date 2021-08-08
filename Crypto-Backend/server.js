@@ -1,10 +1,11 @@
+const MangoDB =require("./Apikey")
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+console.log(MangoDB.ID)
 const mongoose = require("mongoose");
 mongoose.connect(
-  "mongodb+srv://Titan:vLUpS06KfdEh7WE4@cluster0.e37m2.mongodb.net/cryptodata",
+  MangoDB.ID,
   { useNewurlParser: true }
 );
 
