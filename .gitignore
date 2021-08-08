@@ -7,7 +7,7 @@
 # production
 /build
 
-Apikey.js
+Crypto-Backend/Apikey.js
 
 # misc
 .DS_Store
