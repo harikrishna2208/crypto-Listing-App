@@ -1,6 +1,6 @@
 # dependencies
 **/node_modules
-**Apikey.js
+.Crypto-Backend/Apikey
 # testing
 /coverage
 
