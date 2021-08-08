@@ -1,6 +1,6 @@
 # dependencies
 **/node_modules
-Apikeys.js
+**/Apikeys.js
 # testing
 /coverage
 
