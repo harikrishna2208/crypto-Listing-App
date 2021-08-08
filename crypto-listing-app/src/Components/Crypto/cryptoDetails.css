@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cryptoRow {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #444444;
+  padding-bottom: 0.5%;
+  margin: 1%;
+  justify-items: start;
+  width: 800px;
+  justify-content: space-evenly;
+}
+
+.fontName {
+  font-size: 20px;
+}
+
+.images {
+  width: 50px;
+}
+
+.fontName {
+  width: 12em;
+}
+.currentPrice {
+  width: 100px;
+}
+
+.saveData{
+width: 90px;
+height:35px;
+border-radius: 8px;
+border-color:darkorange
+
+}
+.saveData:hover {
+  /* margin-bottom: 10px; */
+  padding: 8px;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.24), 0 10px 20px 0 rgba(0,0,0,0.19);
+    border-color: black;
+
+    /* border-bottom: 0.3rem solid transparent; */
+    transition: all 0.3s;
+}
+.Symbol {
+    text-transform: uppercase;
+  width: 85px;
+}
+
+#image {
+  height: 30px;
+  width: 30px;
+}

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color:antiquewhite;
+    font-family: "Montserrat";
+    font-weight: 700;
+
+}
+.App{
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top:44px ;
+  padding-bottom: 30px;
+}
+
+
+.paginationButtons{
+    width:80%;
+    height: 40%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.paginationButtons a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border:1px solid black;
+    color:black;
+    cursor: pointer;
+}
+
+.paginationButtons a:hover{
+    color: aliceblue;
+    background-color:coral
+}
+
+.paginationActive a{
+    color: aliceblue;
+    background-color:orange;
+}
